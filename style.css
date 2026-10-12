@@ -1,15 +1,23 @@
+@font-face {
+  font-family: "Shrikhand";
+  src: url("fonts/Shrikhand-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
 :root {
-  --paper: #FAFAF7;
+  --paper: #FFFBF4;
   --sheet: #FFFFFF;
-  --ink: #1F2537;
-  --ink-2: #5D6478;
-  --rule: #E4E7EE;
-  --tape: #FFE14D;
+  --ink: #2B211C;
+  --ink-2: #7A6A60;
+  --rule: #E6D9CC;
+  --tape: rgba(244, 180, 0, .32);
+  --tape-edge: #C98F00;
   --display: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --headline: "Shrikhand", Georgia, serif;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root { --paper: #15171C; --sheet: #1E2129; --ink: #E9ECF2; --ink-2: #9AA1B2; --rule: #2B2F39; }
+  :root { --paper: #1F1916; --sheet: #2A221E; --ink: #F6EEE6; --ink-2: #B7A99F; --rule: #463A33; }
 }
 
 * { box-sizing: border-box; }
@@ -22,40 +30,40 @@ body {
 }
 
 a { color: inherit; text-underline-offset: 3px; }
-a:focus-visible { outline: 3px solid var(--tape); outline-offset: 2px; border-radius: 2px; }
+a:focus-visible { outline: 3px solid #F4B400; outline-offset: 2px; border-radius: 2px; }
 
 .page { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
 
-.brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; font-weight: 800; font-stretch: condensed; font-size: 1.25rem; }
+.brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; font-family: var(--headline); font-size: 1.3rem; }
 .brand img { width: 40px; height: 40px; border-radius: 10px; }
 
-h1, h2, h3 { font-stretch: condensed; line-height: 1.1; letter-spacing: -0.01em; }
-h1 { font-size: clamp(2.4rem, 7vw, 3.6rem); font-weight: 900; margin: 2.5rem 0 1rem; }
-h2 { font-size: 1.6rem; font-weight: 800; margin: 2.5rem 0 .5rem; }
+h1, h2, h3 { line-height: 1.15; }
+h1 { font-family: var(--headline); font-weight: 400; font-size: clamp(2.3rem, 7vw, 3.4rem); margin: 2.5rem 0 1rem; }
+h2 { font-size: 1.5rem; font-weight: 800; margin: 2.5rem 0 .5rem; }
 h3 { font-size: 1.2rem; font-weight: 700; margin: 1.5rem 0 .25rem; }
 p, li { max-width: 38rem; }
 .lead { font-size: 1.2rem; color: var(--ink-2); }
 .muted { color: var(--ink-2); font-size: .95rem; }
 
-/* The pattern sheet with the highlighter tape on the current row. */
-.sheet { background: var(--sheet); border-radius: 6px; padding: .5rem 1.25rem; box-shadow: 0 10px 30px rgba(31, 37, 55, .08); margin: 2rem 0; }
-.row { display: flex; gap: .75rem; padding: .7rem .4rem; border-bottom: 1px solid var(--rule); align-items: baseline; }
+/* The pattern sheet, with the round you are on highlighted like in the app. */
+.sheet { background: var(--sheet); border-radius: 6px; padding: .5rem 1.25rem; box-shadow: 0 10px 30px rgba(43, 33, 28, .08); margin: 2rem 0; }
+.row { display: flex; gap: .75rem; padding: .7rem .6rem; border-bottom: 2px dashed var(--rule); align-items: baseline; }
 .row:last-child { border-bottom: 0; }
-.row b { font-stretch: condensed; min-width: 3.6rem; }
+.row b { min-width: 3.6rem; }
 .row.done { color: var(--ink-2); }
-.row.done::before { content: "✓"; font-size: .8rem; margin-right: -.25rem; }
-.row.now { background: var(--tape); color: #1F2537; border-bottom-color: transparent; clip-path: polygon(0 8%, 1.2% 0, 98.8% 0, 100% 10%, 99% 30%, 100% 50%, 99% 70%, 100% 90%, 98.8% 100%, 1.2% 100%, 0 92%, 1% 72%, 0 52%, 1% 32%); padding-left: 1rem; }
+.row.done::before { content: "✓"; color: #13998A; font-weight: 800; font-size: .85rem; margin-right: -.25rem; }
+.row.now { background: var(--tape); color: #2B211C; border: 0; border-radius: 14px; outline: 1.5px dashed var(--tape-edge); outline-offset: -5px; margin: .2rem 0; }
 
 .shots { display: flex; gap: 1rem; margin: 2rem 0; }
-.shots img { width: 50%; max-width: 280px; border-radius: 28px; box-shadow: 0 10px 30px rgba(31, 37, 55, .12); }
+.shots img { width: 50%; max-width: 280px; border-radius: 28px; box-shadow: 0 10px 30px rgba(43, 33, 28, .12); }
 
 .points { list-style: none; padding: 0; }
-.points li { padding: .9rem 0; border-bottom: 1px solid var(--rule); }
-.points strong { font-stretch: condensed; font-size: 1.15rem; display: block; }
+.points li { padding: .9rem 0; border-bottom: 2px dashed var(--rule); }
+.points strong { font-size: 1.1rem; display: block; }
 
-.badge { display: inline-block; background: var(--ink); color: var(--paper); padding: .8rem 1.3rem; border-radius: 14px; font-weight: 800; font-stretch: condensed; text-decoration: none; }
+.badge { display: inline-block; background: var(--ink); color: var(--paper); padding: .85rem 1.4rem; border-radius: 18px; font-weight: 700; text-decoration: none; }
 
-footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--ink-2); font-size: .9rem; }
+footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 2px dashed var(--rule); color: var(--ink-2); font-size: .9rem; }
 footer nav { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-bottom: .75rem; }
 
 @media (max-width: 520px) {
